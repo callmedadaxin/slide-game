@@ -99,7 +99,7 @@ class Main {
       }
     }
     databus.gameOver = true;
-    databus.finalTime = databus.getCurrentTime();
+    databus.finalTime = databus.getCurrentTime(true);
     post("/game/upload", {
       nickName: databus.nickName,
       useTime: databus.finalTime
