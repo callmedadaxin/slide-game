@@ -174,12 +174,16 @@ export default class GameInfo {
   }
 
   tap(event) {
+    if (databus.gameCount) {
+      return;
+    }
     if (!databus.gameStart) {
       return this.tapGameStart(event);
     }
     if (!databus.gameOver) {
       return this.tapGamePlaying(event);
     }
+
     return this.tapGameOver(event);
   }
 
