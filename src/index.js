@@ -99,11 +99,11 @@ class Main {
       }
     }
     databus.gameOver = true;
-    databus.finalTime = databus.getCurrentTime(true);
     post("/game/upload", {
       nickName: databus.nickName,
-      useTime: databus.finalTime
+      useTime: databus.getCurrentTime(true)
     });
+    databus.finalTime = databus.getCurrentTime(false);
   }
   /**
    * canvas重绘函数
