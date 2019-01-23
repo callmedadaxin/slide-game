@@ -101,7 +101,7 @@ class Main {
     databus.gameOver = true;
     databus.finalTime = databus.getCurrentTime();
     post("/game/upload", {
-      nickName: "bbbb",
+      nickName: databus.nickName,
       useTime: databus.finalTime
     });
   }
