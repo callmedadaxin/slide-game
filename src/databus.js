@@ -53,10 +53,11 @@ export default class DataBus {
    * @memberof DataBus
    */
   getCurrentTime(isNum) {
-    let time = Math.floor((Date.now() - this.startTime) / 1000);
+    let time = Date.now() - this.startTime;
     if (isNum) {
       return time;
     }
+    time = Math.floor(time / 1000);
     let minute = Math.floor(time / 60);
     if (minute < 10) {
       minute = "0" + minute;

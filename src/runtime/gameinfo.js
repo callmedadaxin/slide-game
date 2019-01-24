@@ -14,6 +14,8 @@ import IMG_HELP_CONTENT_SRC from "../images/puzzle-help.png";
 import IMG_HINT_SRC from "../images/hint.png";
 import IMG_HINT_CONTENT_SRC from "../images/wrap.png";
 import IMG_REPLAY_SRC from "../images/replay.png";
+import IMG_LOGO from "../images/logo.png";
+
 import { get, post } from "../base/fetch";
 
 let databus = new DataBus();
@@ -22,8 +24,10 @@ let gameMap = new GameMap();
 const helpButtonPadding = 15;
 
 // 拼图图片
-const PUZZLE_EASY_WIDTH = 903;
-const PUZZLE_EASY_HEIGHT = 903;
+const PUZZLE_EASY_WIDTH = 860;
+const PUZZLE_EASY_HEIGHT = 860;
+const IMG_LOGO_WIDTH = 115 * 2;
+const IMG_LOGO_HEIGHT = 54 * 2;
 
 const IMG_EASY_WIDTH = 200;
 const IMG_EASY_HEIGHT = 200;
@@ -72,6 +76,14 @@ export default class GameInfo {
       databus.screenHeight - btnRatio * IMG_EASY_HEIGHT * 1.2,
       btnRatio * IMG_EASY_WIDTH,
       btnRatio * IMG_EASY_HEIGHT
+    );
+
+    this.logo = new Button(
+      IMG_LOGO,
+      (databus.screenWidth - btnRatio * IMG_LOGO_WIDTH) / 2,
+      databus.screenHeight - btnRatio * IMG_LOGO_HEIGHT * 6,
+      btnRatio * IMG_LOGO_WIDTH,
+      btnRatio * IMG_LOGO_HEIGHT
     );
 
     // this.btnStart = wx.createUserInfoButton({
@@ -287,7 +299,7 @@ export default class GameInfo {
 
     // 绘制倒计时
     const now = Date.now();
-    const time = Math.floor(11 - (now - databus.countStart) / 1000);
+    const time = Math.floor(6 - (now - databus.countStart) / 1000);
 
     // 倒计时小于1的时候，开始游戏
     if (time < 1) {
@@ -297,6 +309,8 @@ export default class GameInfo {
     ctx.fillStyle = "#000";
     ctx.font = "40px Arial";
     ctx.textAlign = "center"; //文本水平对齐方式
+
+    this.logo.render(ctx);
 
     ctx.fillText(time, databus.screenWidth / 2, databus.screenHeight / 2);
     ctx.textAlign = "left";
