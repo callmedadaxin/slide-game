@@ -3,6 +3,7 @@ import Button from "../base/button";
 import Piece from "../models/piece";
 import GameMap from "../runtime/gameMap";
 import Background from "./background";
+import dayjs from "dayjs";
 
 import PUZZLE_EASY_SRC from "../images/puzzle-easy.jpg";
 import IMG_START_SRC from "../images/start.jpg";
@@ -190,9 +191,8 @@ export default class GameInfo {
   tapGameStart(event) {
     if (this.btnEasy.isTapped(event.x, event.y)) {
       get("/game/time", {}).then(time => {
-        const t = new Date(time);
-        const now = Date.now();
-
+        const t = dayjs(time);
+        const now = dayjs();
         if (t > now) {
           alert("活动未开始！");
         } else {
