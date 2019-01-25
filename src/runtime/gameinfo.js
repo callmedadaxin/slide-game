@@ -20,6 +20,7 @@ import { get, post } from "../base/fetch";
 
 let databus = new DataBus();
 let gameMap = new GameMap();
+let nickName;
 
 const helpButtonPadding = 15;
 
@@ -208,11 +209,16 @@ export default class GameInfo {
         if (t > now) {
           alert("活动未开始！");
         } else {
-          const name = window.prompt("请输入你的姓名，必须为真实姓名");
-          if (!name) {
-            return window.alert("没有名字无法进入游戏！");
+          if (!nickName) {
+            const name = window.prompt("请输入你的姓名，必须为真实姓名");
+            if (!name) {
+              return window.alert("没有名字无法进入游戏！");
+            }
+            nickName = name;
+            databus.nickName = name;
+          } else {
+            databus.nickName = nickName;
           }
-          databus.nickName = name;
           databus.gameCount = true;
           databus.countStart = Date.now();
         }
