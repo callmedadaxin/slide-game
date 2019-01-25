@@ -210,7 +210,9 @@ export default class GameInfo {
           alert("活动未开始！");
         } else {
           if (!nickName) {
-            const name = window.prompt("请输入你的姓名，必须为真实姓名");
+            const name = window.prompt(
+              "请输入你的姓名，必须为真实姓名。姓名一经填写，不得修改"
+            );
             if (!name) {
               return window.alert("没有名字无法进入游戏！");
             }
